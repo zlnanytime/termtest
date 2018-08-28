@@ -241,6 +241,10 @@ delimiter ;
 drop procedure average1;
 call average1(3);
 
+
+
+
+-- 应该是函数不是存储过程。。。。
 delimiter //
 create procedure course_avg(IN id int)
 begin
@@ -269,8 +273,6 @@ delimiter //
 delimiter ;
 
 
-
-
 go
 delimiter //
  create trigger before_delete_pre before delete on stu for each row PRECEDES before_delete
@@ -292,6 +294,19 @@ WHERE
 //
 delimiter ;
 
+
+-- 最后一个问题
+
+delimiter //
+create trigger trg_stu_del before delete on stu for each row
+begin
+	if exists (select 1 from mark where stu_id = old.rollno limit 1) then
+    signal sqlstate '45000'
+    set message_text = '需要先,在';
+    end if;
+end
+//
+delimiter ;
 
 
 
