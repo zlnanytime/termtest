@@ -157,20 +157,24 @@ WHERE
 SELECT 
     s.rollno, s.stu_name, c.course_name, m.score
 FROM
-    stu s
+    stu sww
         LEFT JOIN
     mark m ON s.rollno = m.stu_id
         LEFT JOIN
     course c ON c.course_id = m.course_id;
 
+select s.rollno,s.stu_name,c.course_name,m.score from stu s inner join mark m on s.rollno = m.stu_id inner join course c on c.course_id = m.course_id;
 
 
-SELECT 
-    s.rollno, s.stu_name, MAX(m.score) AS score
-FROM
-    stu s
-        JOIN
-    mark m ON s.rollno = m.stu_id;
+-- 查询最高分学生信息
+select rollno, stu_name from stu where rollno in (select stu_id from mark where score = (select max(score) from mark));
+
+-- SELECT 
+--    s.rollno, s.stu_name, MAX(m.score) AS score
+-- FROM
+--    stu s
+--        JOIN
+--    mark m ON s.rollno = m.stu_id;
 
 
 /*SELECT 
@@ -209,8 +213,8 @@ WHERE
         AND m.course_id = t.course_id
         AND t.score = m.score;
 
-
-
+-- 查询每门课最高成绩 (增加)
+select s.rollno,s.stu_name from mark w join stu s on w.stu_id = s.rollno where score = (select max(score) from mark i where i.course_id = w.course_id)
 
 
 delimiter //
