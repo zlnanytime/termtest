@@ -163,6 +163,8 @@ FROM
         LEFT JOIN
     course c ON c.course_id = m.course_id;
 
+
+
 SELECT 
     s.rollno, s.stu_name, MAX(m.score) AS score
 FROM
@@ -171,7 +173,7 @@ FROM
     mark m ON s.rollno = m.stu_id;
 
 
-SELECT 
+/*SELECT 
     s.rollno, c.course_name, s.stu_name, MAX(m.score) AS score
 FROM
     stu s
@@ -179,16 +181,16 @@ FROM
     mark m ON s.rollno = m.stu_id
         LEFT JOIN
     course c ON c.course_id = m.course_id
-GROUP BY c.course_name;
+GROUP BY c.course_name;*/
 
-SELECT 
+/*SELECT 
     s.rollno, s.stu_name, c.course_name, m.score
 FROM
     stu s
         LEFT JOIN
     mark m ON s.rollno = m.stu_id
         LEFT JOIN
-    course c ON c.course_id = m.course_id;
+    course c ON c.course_id = m.course_id;*/
 
 
 SELECT 
