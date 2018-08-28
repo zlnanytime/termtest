@@ -133,7 +133,8 @@ insert into mark values
 ('10','5','32','1');
 insert into mark (mark_id,stu_id,course_id) value('11','1','2');
 
-grant select,insert,update,delete on NIIT.* to test1@localhost Identified by "abcdfe";
+
+grant select,insert,update,delete on NIIT.* to 'test1'@'localhost' Identified by 'abcdfe';
 
 
 SELECT 
